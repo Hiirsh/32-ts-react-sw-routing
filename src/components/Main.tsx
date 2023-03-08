@@ -10,7 +10,7 @@ import ErrorPage from "./Main/ErrorPage";
 const Main = () => {
   return (
     <Routes>
-      {["/", navItems[0].route].map((p) => (
+      {["/", navItems[0].route, `${navItems[0].route}/:heroId`].map((p) => (
         <Route key={p} path={p} element={<Home />} />
       ))}
       {[navItems[1].route, `${navItems[1].route}/:heroId`].map((p) => (
