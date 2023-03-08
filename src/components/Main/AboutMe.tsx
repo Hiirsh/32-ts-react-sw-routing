@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "../../css/aboutMe.module.css";
 import {
   characters,
-  defaultHero,
   navItems,
   period_month,
   StarWarsContext,
@@ -15,7 +14,7 @@ const AboutMe = () => {
   const navigate = useNavigate();
   const { hero: currentHero, setHero: changeHero } =
   useContext(StarWarsContext);
-  let { heroId = currentHero } = useParams();
+  let { heroId = "" } = useParams();
   useEffect(() => {
     if (!Object.keys(characters).includes(heroId)) {
       navigate(`/${navItems[1].route}/${currentHero}`);
@@ -47,7 +46,7 @@ const AboutMe = () => {
           });
       }
     }
-  }, [heroId, changeHero, navigate]);
+  }, [heroId, changeHero, navigate,currentHero]);
 
   return (
     <div>
