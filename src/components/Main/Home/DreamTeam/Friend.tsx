@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import style from "../../../../css/bottom-around.module.css";
-import { characters, navItems, StarWarsContext } from "../../../../utils/constants";
+import { navItems, StarWarsContext } from "../../../../utils/constants";
 import { Character } from "../../../../utils/types";
 
 interface IFriend {
@@ -11,21 +11,14 @@ interface IFriend {
 }
 
 const Friend = ({ friend, pos, name }: IFriend) => {
-  const { hero, setHero } = React.useContext(StarWarsContext);
+  const { setHero } = React.useContext(StarWarsContext);
   const navigate = useNavigate();
 
   const pictureHandler = (e: React.PointerEvent<HTMLImageElement>) => {
     e.preventDefault();
     setHero(name);
+    navigate(`/${navItems[0].route}/${name}`);
   };
-  const { heroId = "" } = useParams();
-  React.useEffect(() => {
-    if (!Object.keys(characters).includes(heroId)) {
-      navigate(`/${navItems[0].route}/${hero}`);
-    } else {
-      setHero(heroId);
-    }
-  }, [heroId, hero, navigate, setHero]);
 
   let styles = "col-4 p-1 ";
   if (pos === 7) {
